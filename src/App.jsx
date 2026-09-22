@@ -3,7 +3,9 @@ import Admin from './components/Admin'
 import './App.css'
 
 function App() {
-  if (window.location.pathname === '/admin') {
+  const pathname = window.location.pathname.replace(/\/$/, '')
+
+  if (pathname === '/admin') {
     return <Admin />
   }
 
