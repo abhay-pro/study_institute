@@ -13,6 +13,12 @@ import WhyChooseUs from "./WhyChooseUs";
 import { appConfig, categories, getSkillName } from "./appConfig";
 import emailjs from "@emailjs/browser";
 import { serviceConfig } from "./serviceConfig";
+import {
+	createSafeRecord,
+	readStoredList,
+	storageKeys,
+	writeStoredList,
+} from "./storage";
 
 const EMPTY_REVIEW = {
 	name: "",
@@ -35,7 +41,9 @@ export default function Landing() {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [enquiryModalCourse, setEnquiryModalCourse] = useState(null);
 	const [reviewModalOpen, setReviewModalOpen] = useState(false);
-	const [userReviews, setUserReviews] = useState(appConfig.reviews);
+	const [userReviews, setUserReviews] = useState(() =>
+		readStoredList(storageKeys.reviews, appConfig.reviews),
+	);
 	const [newReview, setNewReview] = useState(EMPTY_REVIEW);
 	const [enquiryForm, setEnquiryForm] = useState(EMPTY_ENQUIRY);
 	const [toastMessage, setToastMessage] = useState("");
@@ -69,15 +77,19 @@ export default function Landing() {
 			showToast("Please fill in your name and review message!");
 			return;
 		}
-		setUserReviews([
-			{
-				...newReview,
-				id: Date.now(),
-				rating: Number(newReview.rating),
-				date: "Just now",
-			},
-			...userReviews,
-		]);
+		const safeReview = {
+			...createSafeRecord(newReview, [
+				["name", 80],
+				["course", 120],
+				["comment", 500],
+			]),
+			id: Date.now(),
+			rating: Math.min(5, Math.max(1, Number(newReview.rating) || 5)),
+			date: "Just now",
+		};
+		const nextReviews = [safeReview, ...userReviews];
+		setUserReviews(nextReviews);
+		writeStoredList(storageKeys.reviews, nextReviews);
 		setNewReview(EMPTY_REVIEW);
 		setReviewModalOpen(false);
 		showToast("Thank you! Your review has been added successfully.");
@@ -90,6 +102,20 @@ export default function Landing() {
 			showToast("Please provide your name and phone number!");
 			return;
 		}
+		const safeEnquiry = {
+			...createSafeRecord(enquiryForm, [
+				["name", 80],
+				["phone", 40],
+				["email", 120],
+				["course", 120],
+				["message", 500],
+			]),
+			id: Date.now(),
+			status: "New",
+			createdAt: new Date().toISOString(),
+		};
+		const enquiries = readStoredList(storageKeys.enquiries);
+		writeStoredList(storageKeys.enquiries, [safeEnquiry, ...enquiries]);
 		if (
 			!serviceConfig.email.serviceId ||
 			!serviceConfig.email.templateId ||
@@ -136,7 +162,7 @@ export default function Landing() {
 		setEnquiryForm((current) => ({ ...current, ...changes }));
 
 	return (
-		<div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-cyan-500 selection:text-slate-950">
+		<div className="public-shell min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-cyan-500 selection:text-slate-950">
 			<AnimatePresence>
 				{toastMessage && (
 					<motion.div

@@ -12,6 +12,11 @@ export const appConfig = {
 	email: "info@demoacademy.in",
 	address: "123 Demo Street, Demo City, India - 000000",
 	established: "2020",
+	admin: {
+		username: "admin",
+		passwordHash:
+			"1cd2b78d5f3bb0894e617c06626acc57cc5c722846a8abefdd48beb23591b924",
+	},
 	stats: {
 		studentsTrained: "15,000+",
 		placementRate: "95%",
