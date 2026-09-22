@@ -1,5 +1,6 @@
 import { Award, Building2, CheckCircle2 } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import { appConfig, getSkillName } from "./appConfig";
 
 export default function About() {
 	return (
@@ -16,7 +17,7 @@ export default function About() {
 								<Building2 className="w-8 h-8 text-cyan-400" />
 								<div>
 									<h3 className="text-xl font-bold text-slate-100">
-										Barrackpore's Premier Tech Hub
+										{appConfig.location}'s Premier Tech Hub
 									</h3>
 									<p className="text-xs text-slate-400">
 										Located near Station for easy commuting
@@ -24,7 +25,7 @@ export default function About() {
 								</div>
 							</div>
 							<p className="text-slate-300 text-sm leading-relaxed">
-								Barrackpore Academy of Information Technology (BAIT) was
+								{appConfig.instituteName} ({appConfig.shortName}) was
 								established to bridge the gap between academic education and
 								industry standards. We specialize in software programming, web
 								development, mobile app development, computerized finance, and
@@ -58,9 +59,9 @@ export default function About() {
 								<span className="text-cyan-400">Real Practical Experience</span>
 							</h2>
 							<p className="text-slate-300 leading-relaxed">
-								Unlike traditional theory-heavy classes, BAIT focuses on
-								project-based learning. Whether you are learning Python, Java,
-								Tally Prime, or SAP, you get live hands-on exercise files,
+								Unlike traditional theory-heavy classes, {appConfig.shortName} focuses on
+								project-based learning. Whether you are learning {getSkillName("python")}, {getSkillName("java")},
+								{getSkillName("tally")}, or {getSkillName("sap")}, you get live hands-on exercise files,
 								assignment reviews, and mock interview guidance.
 							</p>
 							<div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-start gap-4">

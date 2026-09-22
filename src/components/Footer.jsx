@@ -1,12 +1,12 @@
 import { GraduationCap, MessageCircle, Phone } from "lucide-react";
-import { appConfig } from "./appConfig";
+import { appConfig, getSkillName } from "./appConfig";
 
 export default function Footer() {
 	return (
 		<>
 			<div className="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
 				<a
-					href={`https://wa.me/${appConfig.whatsappNumber}?text=Hi%20BAIT%20Academy,%20I%20want%20to%20know%20about%20courses.`}
+					href={`https://wa.me/${appConfig.whatsappNumber}?text=${encodeURIComponent(appConfig.whatsappMessages.footer)}`}
 					target="_blank"
 					rel="noreferrer"
 					className="w-12 h-12 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center shadow-xl shadow-emerald-500/30 hover:scale-110 transition-transform"
@@ -29,12 +29,12 @@ export default function Footer() {
 							<div className="flex items-center gap-2">
 								<GraduationCap className="w-6 h-6 text-cyan-400" />
 								<span className="font-extrabold text-slate-100 text-base">
-									BAIT Barrackpore
+									{appConfig.shortName} {appConfig.location}
 								</span>
 							</div>
 							<p className="leading-relaxed">
-								Barrackpore Academy of Information Technology - Premier Computer
-								Training Institute since 2012.
+								{appConfig.instituteName} - Premier Computer Training Institute
+								since {appConfig.established}.
 							</p>
 						</div>
 						<div>
@@ -42,18 +42,13 @@ export default function Footer() {
 								Popular Courses
 							</h4>
 							<ul className="space-y-2">
-								{[
-									"Python & Data Analytics",
-									"ReactJS Web Development",
-									"Tally Prime with GST",
-									"SAP FICO / MM Training",
-								].map((item) => (
-									<li key={item}>
+								{appConfig.featuredCourseIds.map((skillId) => (
+									<li key={skillId}>
 										<a
 											href="#skills"
 											className="hover:text-cyan-400 transition-colors"
 										>
-											{item}
+											{getSkillName(skillId)}
 										</a>
 									</li>
 								))}
@@ -83,7 +78,7 @@ export default function Footer() {
 						</div>
 						<div>
 							<h4 className="font-bold text-slate-200 text-sm mb-3">
-								Barrackpore Address
+								{appConfig.location} Address
 							</h4>
 							<p className="leading-relaxed mb-2">{appConfig.address}</p>
 							<p className="font-medium text-slate-300">
@@ -97,7 +92,7 @@ export default function Footer() {
 							reserved.
 						</p>
 						<p className="text-slate-500">
-							Designed for Barrackpore Tech Aspirants
+							Designed for {appConfig.location} Tech Aspirants
 						</p>
 					</div>
 				</div>

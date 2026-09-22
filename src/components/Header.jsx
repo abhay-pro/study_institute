@@ -2,14 +2,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { GraduationCap, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { appConfig } from "./appConfig";
 
-const links = [
-	["#about", "About BAIT"],
-	["#skills", "Skills & Courses"],
-	["#why-us", "Why Choose Us"],
-	["#reviews", "Student Reviews"],
-	["#contact", "Contact Us"],
-];
-
 export default function Header({
 	isScrolled,
 	mobileMenuOpen,
@@ -27,18 +19,18 @@ export default function Header({
 					</div>
 					<div>
 						<span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-cyan-400 bg-clip-text text-transparent">
-							BAIT{" "}
+											{appConfig.brandName}{" "}
 							<span className="text-cyan-400 text-xs px-2 py-0.5 rounded-full bg-cyan-950/60 border border-cyan-500/30">
-								ACADEMY
+												{appConfig.brandLabel}
 							</span>
 						</span>
 						<p className="text-[10px] text-slate-400 font-medium tracking-wide">
-							Barrackpore • Estd. 2012
+							{appConfig.location} • Estd. {appConfig.established}
 						</p>
 					</div>
 				</a>
 				<nav className="hidden md:flex items-center gap-8">
-					{links.map(([href, label]) => (
+					{appConfig.navigation.map(([href, label]) => (
 						<a
 							key={href}
 							href={href}
@@ -57,7 +49,7 @@ export default function Header({
 						Call Now
 					</a>
 					<a
-						href={`https://wa.me/${appConfig.whatsappNumber}?text=Hi%20BAIT%20Academy,%20I%20want%20to%20know%20more%20about%20courses.`}
+						href={`https://wa.me/${appConfig.whatsappNumber}?text=${encodeURIComponent(appConfig.whatsappMessages.header)}`}
 						target="_blank"
 						rel="noreferrer"
 						className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-slate-950 text-xs font-bold shadow-lg shadow-emerald-500/20 hover:scale-105 transition-all flex items-center gap-2"
@@ -85,7 +77,7 @@ export default function Header({
 						exit={{ opacity: 0, height: 0 }}
 						className="md:hidden bg-slate-900/95 border-b border-slate-800 px-4 pt-4 pb-6 mt-3 space-y-3 backdrop-blur-xl"
 					>
-						{links.map(([href, label]) => (
+						{appConfig.navigation.map(([href, label]) => (
 							<a
 								key={href}
 								href={href}

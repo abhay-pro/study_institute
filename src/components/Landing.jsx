@@ -10,13 +10,13 @@ import Hero from "./Hero";
 import Modals from "./Modals";
 import Reviews from "./Reviews";
 import WhyChooseUs from "./WhyChooseUs";
-import { appConfig, categories } from "./appConfig";
+import { appConfig, categories, getSkillName } from "./appConfig";
 import emailjs from "@emailjs/browser";
 import { serviceConfig } from "./serviceConfig";
 
 const EMPTY_REVIEW = {
 	name: "",
-	course: "Python Programming",
+	course: getSkillName("python"),
 	rating: 5,
 	comment: "",
 };
@@ -126,7 +126,7 @@ export default function Landing() {
 		setEnquiryModalCourse(null);
 		setEnquiryForm(EMPTY_ENQUIRY);
 		showToast(
-			"Enquiry Sent! Our Barrackpore representative will call you shortly.",
+			`Enquiry Sent! Our ${appConfig.location} representative will call you shortly.`,
 		);
 	};
 

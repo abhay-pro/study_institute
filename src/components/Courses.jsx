@@ -1,5 +1,6 @@
 import { CheckCircle2, ChevronRight, Clock, Search } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import { appConfig, getSkillName } from "./appConfig";
 
 export default function Courses({
 	skills,
@@ -25,7 +26,7 @@ export default function Courses({
 							</span>
 						</h2>
 						<p className="text-slate-400 text-sm sm:text-base">
-							All technologies & tools listed on the BAIT Barrackpore banner.
+							All technologies & tools listed on the {appConfig.shortName} {appConfig.location} banner.
 							Search or filter by topic.
 						</p>
 					</div>
@@ -36,7 +37,7 @@ export default function Courses({
 							<Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
 							<input
 								type="text"
-								placeholder="Search course e.g. Python, Tally, Java, React..."
+								placeholder={`Search course e.g. ${appConfig.courseSearchExamples.map(getSkillName).join(", ")}...`}
 								value={searchQuery}
 								onChange={(e) => onSearchChange(e.target.value)}
 								className="w-full bg-slate-900 border border-slate-700/80 rounded-2xl pl-11 pr-16 py-3 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors shadow-inner"

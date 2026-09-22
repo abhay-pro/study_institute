@@ -1,13 +1,13 @@
 import { BookOpen, ChevronRight, Sparkles } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
-import { appConfig } from "./appConfig";
+import { appConfig, getSkillName } from "./appConfig";
 
 export default function Hero() {
 	const stats = [
 		[appConfig.stats.studentsTrained, "Students Trained", "text-cyan-400"],
 		[appConfig.stats.placementRate, "Placement Assistance", "text-teal-300"],
 		[appConfig.stats.expertTrainers, "Expert Faculty", "text-blue-400"],
-		["12+ Years", "Excellence in Barrackpore", "text-indigo-400"],
+		[`${new Date().getFullYear() - Number(appConfig.established)}+ Years`, `Excellence in ${appConfig.location}`, "text-indigo-400"],
 	];
 	return (
 		<section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
@@ -18,22 +18,26 @@ export default function Hero() {
 					<ScrollReveal yOffset={20}>
 						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 border border-cyan-500/30 text-cyan-400 text-xs font-semibold mb-6 shadow-lg shadow-cyan-950/50">
 							<Sparkles className="w-4 h-4 animate-pulse" />
-							Admissions Open for New Batches in Barrackpore
+							Admissions Open for New Batches in {appConfig.location}
 						</div>
 					</ScrollReveal>
 					<ScrollReveal delay={0.1}>
 						<h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-tight text-slate-100 mb-6">
-							Barrackpore Academy of <br className="hidden sm:inline" />
+							{appConfig.instituteName.split(" of ")[0]} of <br className="hidden sm:inline" />
 							<span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500 bg-clip-text text-transparent">
-								Information Technology
+								{appConfig.instituteName.split(" of ")[1]}
 							</span>
 						</h1>
 					</ScrollReveal>
 					<ScrollReveal delay={0.2}>
 						<p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
 							Master job-ready IT skills with 100% practical lab practice. From{" "}
-							<strong className="text-cyan-400">Python, React, Android</strong>{" "}
-							to <strong className="text-teal-300">Tally Prime & SAP</strong>.
+								<strong className="text-cyan-400">
+									{appConfig.featuredCourseIds.slice(0, 2).map(getSkillName).join(", ")}
+								</strong>{" "}
+								to <strong className="text-teal-300">
+									{appConfig.featuredCourseIds.slice(2).map(getSkillName).join(" & ")}
+								</strong>.
 						</p>
 					</ScrollReveal>
 					<ScrollReveal delay={0.3}>

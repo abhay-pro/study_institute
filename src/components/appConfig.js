@@ -1,20 +1,37 @@
 import { Code, Smartphone, Calculator, Database, Laptop } from "lucide-react";
 
 export const appConfig = {
-	instituteName: "Barrackpore Academy of Information Technology",
-	shortName: "BAIT Academy",
+	instituteName: "Demo Academy of Information Technology",
+	shortName: "Demo Academy",
+	brandName: "Demo",
+	brandLabel: "Academy",
+	location: "Demo City",
 	tagline: "Empowering Minds with Practical IT & Professional Skills",
-	phone: "+91 98301 XXXXX",
-	whatsappNumber: "9198301XXXXX",
-	email: "info@baitacademy.in",
-	address: "45/1 Station Road, Opposite Railway Gate No. 2, Barrackpore, Kolkata - 700120",
-	established: "2012",
+	phone: "+91 90000 00000",
+	whatsappNumber: "919000000000",
+	email: "info@demoacademy.in",
+	address: "123 Demo Street, Demo City, India - 000000",
+	established: "2020",
 	stats: {
 		studentsTrained: "15,000+",
 		placementRate: "95%",
 		expertTrainers: "25+",
 		labComputers: "120+",
 	},
+	navigation: [
+		["#about", "About Demo Academy"],
+		["#skills", "Skills & Courses"],
+		["#why-us", "Why Choose Us"],
+		["#reviews", "Student Reviews"],
+		["#contact", "Contact Us"],
+	],
+	whatsappMessages: {
+		header: "Hi Demo Academy, I want to know more about courses.",
+		footer: "Hi Demo Academy, I want to know about courses.",
+		contact: "Hi Demo Academy, I want to enquire about admissions.",
+	},
+	featuredCourseIds: ["python", "react", "tally", "sap"],
+	courseSearchExamples: ["python", "tally", "java", "react"],
 	skills: [
 		{
 			id: "python",
@@ -212,25 +229,25 @@ export const appConfig = {
 	reviews: [
 		{
 			id: 1,
-			name: "Ayan Mukhopadhyay",
+			name: "Demo Student One",
 			course: "Python & ReactJS",
 			rating: 5,
 			date: "2 weeks ago",
 			comment:
-				"BAIT Barrackpore transformed my career! The practical hands-on coding sessions and lab guidance helped me crack my first tech interview within a month of completion.",
+				"Demo Academy transformed my career! The practical hands-on coding sessions and lab guidance helped me crack my first tech interview within a month of completion.",
 		},
 		{
 			id: 2,
-			name: "Priya Banerjee",
+			name: "Demo Student Two",
 			course: "Tally Prime & SAP FICO",
 			rating: 5,
 			date: "1 month ago",
 			comment:
-				"Best accounting institute in Barrackpore. Faculty explained GST filing step-by-step with live company bills. Got placed in a local CA firm quickly!",
+				"Demo Academy provided excellent accounting training. Faculty explained GST filing step-by-step with live company bills. Got placed quickly!",
 		},
 		{
 			id: 3,
-			name: "Rahul Sharma",
+			name: "Demo Student Three",
 			course: "Android & Java",
 			rating: 5,
 			date: "2 months ago",
@@ -239,6 +256,9 @@ export const appConfig = {
 		},
 	],
 };
+
+export const getSkillName = (skillId) =>
+	appConfig.skills.find((skill) => skill.id === skillId)?.name || skillId;
 
 export const categories = [
 	"All",

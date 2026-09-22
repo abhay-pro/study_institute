@@ -1,10 +1,11 @@
 import { Briefcase, Laptop, ShieldCheck } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import { appConfig, getSkillName } from "./appConfig";
 
 const reasons = [
 	[
 		"100% Practical Lab Focus",
-		"Every student gets dedicated computer access during lab hours. Perform real coding, DB queries, or Tally voucher entries under faculty supervision.",
+		`Every student gets dedicated computer access during lab hours. Perform real coding, DB queries, or ${getSkillName("tally")} voucher entries under faculty supervision.`,
 		Laptop,
 		"text-cyan-400",
 		"bg-cyan-500/10",
@@ -38,8 +39,8 @@ export default function WhyChooseUs() {
 							OUR ADVANTAGE
 						</div>
 						<h2 className="text-3xl sm:text-4xl font-extrabold text-slate-100 tracking-tight">
-							Why Students in Barrackpore{" "}
-							<span className="text-cyan-400">Trust BAIT</span>
+							Why Students in {appConfig.location}{" "}
+							<span className="text-cyan-400">Trust {appConfig.shortName}</span>
 						</h2>
 					</div>
 				</ScrollReveal>

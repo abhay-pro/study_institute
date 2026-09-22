@@ -17,8 +17,8 @@ export default function Contact({ form, onChange, onSubmit, isSubmitting }) {
 									GET IN TOUCH
 								</div>
 								<h2 className="text-3xl sm:text-4xl font-extrabold text-slate-100 tracking-tight">
-									Visit BAIT{" "}
-									<span className="text-cyan-400">Barrackpore Campus</span>
+									Visit {appConfig.shortName}{" "}
+									<span className="text-cyan-400">{appConfig.location} Campus</span>
 								</h2>
 								<p className="text-slate-400 text-xs sm:text-sm mt-2">
 									Have questions regarding admission, course fee structure, or
@@ -47,7 +47,7 @@ export default function Contact({ form, onChange, onSubmit, isSubmitting }) {
 							</div>
 							<div className="flex gap-4 pt-2">
 								<a
-									href={`https://wa.me/${appConfig.whatsappNumber}?text=Hi%20BAIT%20Barrackpore,%20I%20want%20to%20enquire%20about%20admissions.`}
+									href={`https://wa.me/${appConfig.whatsappNumber}?text=${encodeURIComponent(appConfig.whatsappMessages.contact)}`}
 									target="_blank"
 									rel="noreferrer"
 									className="flex-1 py-3.5 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 hover:bg-emerald-400 transition-colors"

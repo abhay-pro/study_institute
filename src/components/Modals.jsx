@@ -35,7 +35,7 @@ export default function Modals({
 								Share Your Student Experience
 							</h3>
 							<p className="text-xs text-slate-400 mb-6">
-								Your feedback helps future students in Barrackpore choose the
+								Your feedback helps future students in {appConfig.location} choose the
 								right tech course.
 							</p>
 							<form onSubmit={onReviewSubmit} className="space-y-4">
